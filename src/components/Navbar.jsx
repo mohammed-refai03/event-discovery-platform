@@ -54,7 +54,7 @@ function Navbar({ registrationCount = 0 }) {
           {/* Brand Logo */}
             <Link to="/" className="brand-logo">
               <img
-                src="/images/logo.webp"
+                src="images/logo.webp"
                 alt="STACKLY"
                 className="brand-logo-img"
               />

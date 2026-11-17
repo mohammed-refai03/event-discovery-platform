@@ -13,7 +13,7 @@ function Footer() {
             <div className="footer-brand">
                <Link to="/" className="brand-logo">
     <img
-      src="/images/logo.webp"
+      src="images/logo.webp"
       alt="STACKLY"
       className="brand-logo-img"
     />
