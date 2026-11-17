@@ -153,63 +153,65 @@ function AppContent() {
   };
 
   return (
-    <div className="app-container">
-      {/* Page Preloader */}
-      <Preloader isLoading={isPageLoading} />
+    <BrowserRouter>
+      <div className="app-container">
+        {/* Page Preloader */}
+        <Preloader isLoading={isPageLoading} />
 
-      <ScrollAndRevealHandler />
-      <Navbar registrationCount={registrations.length} />
+        <ScrollAndRevealHandler />
+        <Navbar registrationCount={registrations.length} />
 
-      <main className="main-content page-enter-animation">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Home
-                onSelectEvent={(ev) => handleOpenEventModal(ev, 'details')}
-                favourites={favourites}
-                onToggleFavourite={handleToggleFavourite}
-              />
-            }
+        <main className="main-content page-enter-animation">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Home
+                  onSelectEvent={(ev) => handleOpenEventModal(ev, "details")}
+                  favourites={favourites}
+                  onToggleFavourite={handleToggleFavourite}
+                />
+              }
+            />
+            <Route
+              path="/events"
+              element={
+                <ExploreEvents
+                  onSelectEvent={(ev) => handleOpenEventModal(ev, "details")}
+                  favourites={favourites}
+                  onToggleFavourite={handleToggleFavourite}
+                />
+              }
+            />
+            <Route
+              path="/my-registrations"
+              element={
+                <MyRegistrations
+                  registrations={registrations}
+                  onSelectEvent={(ev) => handleOpenEventModal(ev, "details")}
+                  onRegistrationsChange={refreshStorageData}
+                />
+              }
+            />
+          </Routes>
+        </main>
+
+        <Footer />
+
+        {/* Global Event Details & Registration Modal */}
+        {selectedEvent && (
+          <EventModal
+            isOpen={isModalOpen}
+            onClose={handleCloseEventModal}
+            event={selectedEvent}
+            isFavourited={favourites.includes(selectedEvent.id)}
+            onToggleFavourite={handleToggleFavourite}
+            initialView={modalView}
+            onRegistrationComplete={handleRegistrationComplete}
           />
-          <Route
-            path="/events"
-            element={
-              <ExploreEvents
-                onSelectEvent={(ev) => handleOpenEventModal(ev, 'details')}
-                favourites={favourites}
-                onToggleFavourite={handleToggleFavourite}
-              />
-            }
-          />
-          <Route
-            path="/my-registrations"
-            element={
-              <MyRegistrations
-                registrations={registrations}
-                onSelectEvent={(ev) => handleOpenEventModal(ev, 'details')}
-                onRegistrationsChange={refreshStorageData}
-              />
-            }
-          />
-        </Routes>
-      </main>
-
-      <Footer />
-
-      {/* Global Event Details & Registration Modal */}
-      {selectedEvent && (
-        <EventModal
-          isOpen={isModalOpen}
-          onClose={handleCloseEventModal}
-          event={selectedEvent}
-          isFavourited={favourites.includes(selectedEvent.id)}
-          onToggleFavourite={handleToggleFavourite}
-          initialView={modalView}
-          onRegistrationComplete={handleRegistrationComplete}
-        />
-      )}
-    </div>
+        )}
+      </div>
+    </BrowserRouter>
   );
 }
 
