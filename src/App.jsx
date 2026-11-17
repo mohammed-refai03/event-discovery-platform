@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -153,7 +153,7 @@ function AppContent() {
   };
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className="app-container">
         {/* Page Preloader */}
         <Preloader isLoading={isPageLoading} />
@@ -211,7 +211,7 @@ function AppContent() {
           />
         )}
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
