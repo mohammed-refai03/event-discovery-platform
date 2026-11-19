@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>STACKLY — Redirecting...</title>
+    <script type="text/javascript">
+      // GitHub Pages SPA Hash Redirect
+      // If user refreshes on /event-discovery-platform/events, redirect to /event-discovery-platform/#/events
+      (function() {
+        var path = window.location.pathname;
+        var repo = 'event-discovery-platform';
+        var segments = path.split('/').filter(Boolean);
+        
+        var repoIndex = segments.indexOf(repo);
+        var subPath = '';
+        if (repoIndex !== -1) {
+          subPath = segments.slice(repoIndex + 1).join('/');
+        } else {
+          subPath = segments.join('/');
+        }
+        
+        var query = window.location.search || '';
+        var hash = window.location.hash || '';
+        var redirectUrl = window.location.origin + '/' + repo + '/#' + (subPath ? '/' + subPath : '/') + query + hash;
+        window.location.replace(redirectUrl);
+      })();
+    </script>
+  </head>
+  <body style="font-family: system-ui, -apple-system, sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; background-color: #F5F8FC; color: #172B45;">
+    <div style="text-align: center;">
+      <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Loading STACKLY...</h2>
+      <p style="color: #66778D;">Redirecting to your page...</p>
+    </div>
+  </body>
+</html>
