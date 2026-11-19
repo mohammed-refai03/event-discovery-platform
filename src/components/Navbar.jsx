@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { getAssetUrl } from '../utils/assetPath';
 
 function Navbar({ registrationCount = 0 }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -52,13 +53,25 @@ function Navbar({ registrationCount = 0 }) {
       <nav className="navbar" role="navigation" aria-label="Main Navigation">
         <div className="container navbar-container">
           {/* Brand Logo */}
-            <Link to="/" className="brand-logo">
-              <img
-                src="images/logo.webp"
-                alt="STACKLY"
-                className="brand-logo-img"
-              />
-            </Link>
+          <Link to="/" className="navbar-brand" onClick={closeMenu} aria-label="STACKLY Home">
+            <img
+              src={getAssetUrl('images/logo.webp')}
+              alt="STACKLY"
+              className="brand-logo-img"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+                if (e.currentTarget.nextElementSibling) {
+                  e.currentTarget.nextElementSibling.style.display = 'inline-flex';
+                }
+              }}
+            />
+            <span className="navbar-brand-text-fallback" style={{ display: 'none', alignItems: 'center', gap: '0.65rem' }}>
+              <div className="navbar-brand-icon">
+                <i className="fa-solid fa-layer-group"></i>
+              </div>
+              <span>STACKLY</span>
+            </span>
+          </Link>
 
           {/* Desktop Navigation Links */}
           <div className="navbar-links desktop-only">
@@ -121,11 +134,24 @@ function Navbar({ registrationCount = 0 }) {
       >
         {/* Drawer Header */}
         <div className="drawer-header container">
-          <Link to="/" className="navbar-brand" onClick={closeMenu}>
-            <div className="navbar-brand-icon">
-              <i className="fa-solid fa-layer-group"></i>
-            </div>
-            <span>STACKLY</span>
+          <Link to="/" className="navbar-brand" onClick={closeMenu} aria-label="STACKLY Home">
+            <img
+              src={getAssetUrl('images/logo.webp')}
+              alt="STACKLY"
+              className="brand-logo-img"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+                if (e.currentTarget.nextElementSibling) {
+                  e.currentTarget.nextElementSibling.style.display = 'inline-flex';
+                }
+              }}
+            />
+            <span className="navbar-brand-text-fallback" style={{ display: 'none', alignItems: 'center', gap: '0.65rem' }}>
+              <div className="navbar-brand-icon">
+                <i className="fa-solid fa-layer-group"></i>
+              </div>
+              <span>STACKLY</span>
+            </span>
           </Link>
 
           <button

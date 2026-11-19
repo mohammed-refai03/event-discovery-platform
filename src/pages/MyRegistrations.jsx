@@ -4,6 +4,7 @@ import { getRegistrations, cancelRegistration } from '../utils/localStorage';
 import { events } from '../data/events';
 import EmptyState from '../components/EmptyState';
 import LetterRiseHeading from '../components/LetterRiseHeading';
+import { getAssetUrl } from '../utils/assetPath';
 
 function MyRegistrations({ registrations = [], onSelectEvent, onRegistrationsChange }) {
   const navigate = useNavigate();
@@ -131,7 +132,7 @@ function MyRegistrations({ registrations = [], onSelectEvent, onRegistrationsCha
                     onClick={() => handleViewEventDetails(reg)}
                     style={{ cursor: 'pointer' }}
                   >
-                    <img src={reg.eventImage} alt={reg.eventTitle} loading="lazy" />
+                    <img src={getAssetUrl(reg.eventImage)} alt={reg.eventTitle} loading="lazy" />
                   </div>
 
                   {/* Body Information */}

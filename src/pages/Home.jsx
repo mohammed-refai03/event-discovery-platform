@@ -4,6 +4,7 @@ import { events, categories, locations } from '../data/events';
 import EventCard from '../components/EventCard';
 import CategoryCard from '../components/CategoryCard';
 import LetterRiseHeading from '../components/LetterRiseHeading';
+import { getAssetUrl } from '../utils/assetPath';
 
 function Home({ onSelectEvent, favourites, onToggleFavourite }) {
   const navigate = useNavigate();
@@ -94,7 +95,7 @@ function Home({ onSelectEvent, favourites, onToggleFavourite }) {
                   <i className="fa-solid fa-fire"></i> Trending
                 </span>
                 <img
-                  src="/images/banners/hero-trending.webp"
+                  src={getAssetUrl('images/banners/hero-trending.webp')}
                   alt="Neon Night Festival"
                   className="hero-card-tall-image"
                 />
@@ -115,7 +116,7 @@ function Home({ onSelectEvent, favourites, onToggleFavourite }) {
                   style={{ cursor: 'pointer' }}
                 >
                   <img
-                    src="/images/banners/hero-workshop.webp"
+                    src={getAssetUrl('images/banners/hero-workshop.webp')}
                     alt="Creative Workshop"
                     className="hero-card-small-img"
                   />
@@ -133,7 +134,7 @@ function Home({ onSelectEvent, favourites, onToggleFavourite }) {
                   style={{ cursor: 'pointer' }}
                 >
                   <img
-                    src="/images/banners/hero-community.webp"
+                    src={getAssetUrl('images/banners/hero-community.webp')}
                     alt="Future of AI Design"
                     className="hero-card-small-img"
                   />
@@ -346,7 +347,10 @@ function Home({ onSelectEvent, favourites, onToggleFavourite }) {
           5. PROMOTIONAL HOST CTA BANNER
          =================================================================== */}
       <section className="container" aria-label="Promotional banner">
-        <div className="promo-banner reveal-zoom-in">
+        <div
+          className="promo-banner reveal-zoom-in"
+          style={{ '--promo-bg-url': `url(${getAssetUrl('images/banners/host-banner.webp')})` }}
+        >
           <div className="promo-banner-content">
             <span className="eyebrow" style={{ backgroundColor: 'rgba(255, 255, 255, 0.15)', color: '#ffffff' }}>
               HOST WITH US

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { getAssetUrl } from '../utils/assetPath';
 
 function Footer() {
   const currentYear = new Date().getFullYear();
@@ -11,13 +12,27 @@ function Footer() {
           {/* Brand Col */}
           <div className="footer-col-brand">
             <div className="footer-brand">
-               <Link to="/" className="brand-logo">
-    <img
-      src="images/logo.webp"
-      alt="STACKLY"
-      className="brand-logo-img"
-    />
-  </Link>
+              <Link to="/" className="navbar-brand" aria-label="STACKLY Home">
+                <img
+                  src={getAssetUrl('images/logo.webp')}
+                  alt="STACKLY"
+                  className="brand-logo-img"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                    if (e.currentTarget.nextElementSibling) {
+                      e.currentTarget.nextElementSibling.style.display = 'inline-flex';
+                    }
+                  }}
+                />
+                <span className="navbar-brand-text-fallback" style={{ display: 'none', alignItems: 'center', gap: '0.65rem' }}>
+                  <div className="navbar-brand-icon">
+                    <i className="fa-solid fa-layer-group"></i>
+                  </div>
+                  <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, fontSize: '1.45rem', color: 'var(--primary)' }}>
+                    STACKLY
+                  </span>
+                </span>
+              </Link>
             </div>
             <p className="footer-desc">
               The premier editorial platform for discovering workshops, creative intensives, tech conferences, and executive networking sessions.
